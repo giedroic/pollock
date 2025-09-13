@@ -6,13 +6,11 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 10:58:20 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 11:18:26 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include <stdlib.h>
-#include <time.h>
+#include "pollock.h"
 #define WIDTH 420
 #define HEIGHT 420
 
@@ -20,6 +18,7 @@ int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
+	t_data	img;
 	int		x;
 	int		y;
 
