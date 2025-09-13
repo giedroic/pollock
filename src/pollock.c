@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 13:55:19 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 13:57:05 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ int	main(void)
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "pollock");
+	if (mlx_win == NULL)
+	{
+		mlx_destroy_display(mlx);
+		free(mlx);
+		return (EXIT_FAILURE);
+	}
 	x = WIDTH * 0.1;
 	while (x < WIDTH * 0.9)
 	{
@@ -45,8 +51,7 @@ int	main(void)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_string_put(mlx, mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
 	mlx_loop(mlx);
-	mlx_destroy_display(mlx);
-	free(mlx);
+
 	return (0);
 }
 
