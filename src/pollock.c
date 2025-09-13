@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 13:57:05 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 14:38:50 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,22 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_mlx_data	data;
 	t_data	img;
 	int		x;
 	int		y;
 
 	srand(time(NULL));
-	mlx = mlx_init();
-	if (mlx == NULL)
+	data.mlx = mlx_init();
+	if (data.mlx == NULL)
 		return (EXIT_FAILURE);
-	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "pollock");
-	if (mlx_win == NULL)
+	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "pollock");
+	if (data.mlx_win == NULL)
 	{
-		mlx_destroy_display(mlx);
-		free(mlx);
+		mlx_destroy_display(data.mlx);
+		free(data.mlx);
 		return (EXIT_FAILURE);
 	}
 	x = WIDTH * 0.1;
@@ -48,10 +47,9 @@ int	main(void)
 		}
 		++x;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_string_put(mlx, mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
-	mlx_loop(mlx);
-
+	mlx_put_image_to_window(data.mlx, data.mlx_win, img.img, 0, 0);
+	mlx_string_put(data.mlx, data.mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
+	mlx_loop(data.mlx);
 	return (0);
 }
 
