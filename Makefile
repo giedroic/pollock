@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror -g -I minilibx-linux -I /usr/include -O3
+CFLAGS = -Wall -Wextra -Werror -g -I minilibx-linux -I /usr/include -I include -O3
 
 LDFLAGS = -L minilibx-linux -L /usr/lib
 
