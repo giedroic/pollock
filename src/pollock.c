@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 14:38:50 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:13:07 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #define HEIGHT 720
 
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	input_handler(int keycode, t_mlx_data *data);
 
 int	main(void)
 {
 	t_mlx_data	data;
-	t_data	img;
 	int		x;
 	int		y;
 
@@ -27,8 +27,8 @@ int	main(void)
 	data.mlx = mlx_init();
 	if (data.mlx == NULL)
 		return (EXIT_FAILURE);
-	img.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	data.img.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "pollock");
 	if (data.mlx_win == NULL)
 	{
@@ -42,12 +42,12 @@ int	main(void)
 		y = HEIGHT * 0.1;
 		while (y < HEIGHT * 0.9)
 		{
-			ft_mlx_pixel_put(&img, x, y, rand() % 0x1000000);
+			ft_mlx_pixel_put(&data.img, x, y, rand() % 0x1000000);
 			++y;
 		}
 		++x;
 	}
-	mlx_put_image_to_window(data.mlx, data.mlx_win, img.img, 0, 0);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img, 0, 0);
 	mlx_string_put(data.mlx, data.mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
 	mlx_loop(data.mlx);
 	return (0);
