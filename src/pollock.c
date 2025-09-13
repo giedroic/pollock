@@ -6,13 +6,13 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 11:56:17 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 13:55:19 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pollock.h"
-#define WIDTH 420
-#define HEIGHT 420
+#define WIDTH 1280
+#define HEIGHT 720
 
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -26,6 +26,8 @@ int	main(void)
 
 	srand(time(NULL));
 	mlx = mlx_init();
+	if (mlx == NULL)
+		return (EXIT_FAILURE);
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "pollock");
@@ -40,8 +42,11 @@ int	main(void)
 		}
 		++x;
 	}
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_string_put(mlx, mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
 	mlx_loop(mlx);
+	mlx_destroy_display(mlx);
+	free(mlx);
 	return (0);
 }
 
