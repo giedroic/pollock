@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 15:29:18 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:39:57 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,12 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 int	close(int keycode, t_mlx_data *data)
 {
 	if (keycode == XK_Escape)
-		exit(1);
-	(void) data;
+	{
+		mlx_destroy_image(data->mlx, data->img.img);
+		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+		exit(EXIT_SUCCESS);
+	}
 	return (0);
 }
