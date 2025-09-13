@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 11:13:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 14:27:42 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 14:50:45 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ typedef struct s_mlx_data
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*img;
 }	t_mlx_data;
