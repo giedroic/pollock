@@ -6,7 +6,7 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 10:32:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 15:13:07 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:27:04 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define HEIGHT 720
 
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	input_handler(int keycode, t_mlx_data *data);
+int	close(int keycode, t_mlx_data *data);
 
 int	main(void)
 {
@@ -49,6 +49,7 @@ int	main(void)
 	}
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img, 0, 0);
 	mlx_string_put(data.mlx, data.mlx_win, WIDTH * 0.8, HEIGHT * 0.95, rand() % 0x1000000, "pollock.");
+	mlx_key_hook(data.mlx_win, close, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
@@ -59,4 +60,12 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	close(int keycode, t_mlx_data *data)
+{
+	if (keycode == XK_Escape)
+		exit(1);
+	(void) data;
+	return (0);
 }

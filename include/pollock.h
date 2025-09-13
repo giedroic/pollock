@@ -6,13 +6,14 @@
 /*   By: agiedroi <agiedroi@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 11:13:42 by agiedroi          #+#    #+#             */
-/*   Updated: 2025/09/13 14:53:26 by agiedroi         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:26:30 by agiedroi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <stdlib.h>
 #include <time.h>
+#include <X11/keysym.h>
 
 typedef struct s_data
 {
